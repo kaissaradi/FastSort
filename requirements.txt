@@ -1,0 +1,24 @@
+# requirements.txt
+
+# Core scientific computing
+numpy<2.0
+scipy
+scikit-learn
+numba>=0.56.0
+
+# Data I/O and configuration
+h5py
+pyyaml
+
+# Advanced Clustering
+hdbscan
+
+# GPU Acceleration (select versions compatible with your CUDA toolkit)
+# Example for CUDA 11.x:
+cupy-cuda11x
+cuml-cu11
+
+# Optional for plotting/diagnostics
+matplotlib
+networkx
+diptest
