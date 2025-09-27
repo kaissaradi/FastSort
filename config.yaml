@@ -1,0 +1,36 @@
+# config_gpu.yaml
+# Configuration file for the Axolotl-GPU spike sorting pipeline.
+
+paths:
+  raw_data_path: "/path/to/your/data.bin"
+  channel_map_path: "/path/to/your/channel_positions.npy"
+  output_dir: "/path/to/your/output_directory"
+  
+recording:
+  n_channels: 512
+  sampling_rate: 30000
+  dtype: 'int16'
+
+pipeline:
+  # Deduplication window in milliseconds. Spikes closer than this are resolved
+  # to the one with the largest amplitude. 0.5ms is a robust default.
+  refractory_period_ms: 0.5
+  
+  # Snippet window (in samples) relative to the peak for waveform extraction.
+  # e.g., -40 samples before the peak to +80 samples after.
+  window_pre_samples: -40
+  window_post_samples: 80
+
+clustering:
+  # Number of nearby channels to use for PCA feature extraction for each spike.
+  # A value between 8 and 12 is recommended.
+  n_channels_for_pca: 10
+
+  # Number of principal components to keep. This defines the dimensionality
+  # of the space where clustering occurs. 10 is a strong default.
+  n_pca_components: 10
+  
+  # HDBSCAN's 'min_cluster_size' parameter. This is the minimum number of
+  # spikes required to form a persistent cluster.
+  min_cluster_size: 25
+
