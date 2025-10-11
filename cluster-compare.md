@@ -1,8 +1,7 @@
-Understood. I will combine clustering.py, subtraction.py, and comparison.py into a single, complete Markdown file named unit_processing_and_comparison.md.
-Here is the complete content for the file.
+Got it. Combining clustering.py, subtraction.py, and comparison.py into a single Markdown file named unit_processing_and_comparison.md, ensuring each original file's content is enclosed in its own Python code block.
 Unit Processing and Comparison (unit_processing_and_comparison.md)
 1. Electrical Image (EI) Comparison (comparison.py)
-This module provides functions for quantifying the similarity between Electrical Images (EIs), which is crucial for unit merging and quality control. The main comparison uses cosine similarity over selected channels, incorporating a lag-tolerant alignment based on cross-correlation on the dominant channel. It also includes utilities for sub-sample alignment and subtraction-based comparison.
+This module provides functions for quantifying the similarity between Electrical Images (EIs), which is crucial for unit merging and quality control. The primary comparison uses cosine similarity after a lag-tolerant alignment based on cross-correlation on the dominant channel. It also includes utilities for sub-sample alignment and subtraction-based comparison.
 # axolotl/comparison.py
 """
 Functions for comparing electrical images (EIs) using similarity metrics
@@ -205,7 +204,7 @@ def compare_ei_subtraction(ei_a, ei_b, max_lag=3, p2p_thresh=30.0):
     }
 
 2. Unit Clustering and Merging (clustering.py)
-This file handles the core steps of reducing the dimensionality of spike snippets, using HDBSCAN for initial density-based clustering, and then performing template-based merging of similar clusters.
+This file implements the clustering pipeline, including PCA for dimensionality reduction, HDBSCAN for initial clustering, and a customized routine to merge similar clusters based on both EI template similarity and separation in PC space.
 # axolotl/clustering.py
 """
 Functions for clustering spike waveforms, merging similar clusters,
@@ -527,7 +526,7 @@ def select_cluster_by_ei_similarity_ram(
     return final_ei, final_inds, final_channels, best_idx
 
 3. Template Subtraction (Peeling) (subtraction.py)
-This file contains the logic for peeling—the process of subtracting the unit's template from the raw data trace so the remaining residual signal can be processed for smaller units. It includes both high-level PCA-clustered subtraction and a Numba-accelerated helper for in-place data modification.
+This file contains the logic for peeling—the process of subtracting the unit's template from the raw data trace so the remaining residual signal can be processed for smaller units. It includes both high-level PCA-clustered subtraction and a Numba-accelerated helper for efficient, in-place data modification.
 # axolotl/subtraction.py
 """
 Functions for subtracting found neuron templates from the raw data trace (peeling).
